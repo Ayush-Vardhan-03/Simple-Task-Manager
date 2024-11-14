@@ -1,7 +1,6 @@
 import React from 'react';
-import Navbar from './components/navbar';
-import Sidebar from './components/sidebar'
-
+import Navbar from './navbar.js';
+import Sidebar from './sidebar.js'
 
 function Header() {
   return (
