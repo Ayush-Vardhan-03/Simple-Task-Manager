@@ -3,7 +3,175 @@
 }
 
 header {
-  background-color: #282c34;
-  padding: 10px;
+  position: relative;
   color: white;
+  background-color: #282c34;
+  width: 100%;
+  padding: 3px;
+  margin-bottom: 14px;
+}
+
+.navbar {
+  margin-top: 2px;
+  position: fixed;
+  background-color: #31cbc9;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  z-index: 2;
+}
+.sections {
+  display: flex;
+  justify-content: center;
+}
+.upcoming {
+  color: white;
+  padding: 15px;
+  border-left: 2px solid white;
+  margin: 0;
+}
+.overdue {
+  color: white;
+  padding: 15px;
+  border-left: 2px solid white;
+  margin: 0;
+}
+.completed {
+  color: white;
+  padding: 15px;
+  border-left: 2px solid white;
+  border-right: 2px solid white;
+  margin: 0;
+}
+
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  width: 105px;
+  height: 100%;
+  background-color: #31cbc9;
+  z-index: 3;
+}
+.all {
+  top: 0;
+  color: white;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  padding: 15px;
+  margin: 0;
+}
+.filter {
+  padding: 10px;
+  border-top: 2px solid black;
+  border-bottom: 2px dotted black;
+}
+.priorities {
+  margin: 5px;
+}
+.high {
+  color: red;
+  padding: 10px;
+  border: 2px solid white;
+  margin: 2px;
+}
+.medium {
+  color: orange;
+  padding: 10px;
+  border: 2px solid white;
+  margin: 2px;
+}
+.low {
+  color: green;
+  padding: 10px;
+  border: 2px solid white;
+  margin: 2px;
+}
+
+/* Add these styles to your App.css file */
+
+.task-form {
+  position: relative;
+  z-index: 3;
+  justify-self: center;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin: 20px 0;
+  width: 50%;
+}
+.task-form h2 {
+  margin-top: 0;
+}
+.task-form label {
+  display: block;
+  margin: 10px 0;
+}
+.task-form input,
+.task-form textarea,
+.task-form select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+.task-form button {
+  background-color: #28a745;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+
+/* Add these styles to TaskList.css */
+
+.task-list {
+  z-index: 0;
+  position: relative;
+  margin-top: 87px;
+  margin-left: 130px;
+  margin-right: 20px;
+  border: 1px solid gray;
+}
+.task-item {
+  display: flex;
+  justify-content: space-around;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.task-name {
+  margin: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.task-description {
+  margin: 20px;
+}
+.task-due-date {
+  margin: 20px;
+  font-style: italic;
+  color: #555;
+}
+.task-priority {
+  margin: 20px;
+  font-weight: bold;
+  border: 2px solid gray;
+}
+.task-priority.low {
+  color: green;
+}
+.task-priority.medium {
+  color: orange;
+}
+.task-priority.high {
+  color: red;
 }
