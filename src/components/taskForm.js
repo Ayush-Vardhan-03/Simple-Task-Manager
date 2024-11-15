@@ -1,20 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import '../css/taskForm.css';
 
-function TaskForm({ addTask, closeForm }) {
+function TaskForm({ addTask, closeForm, editTask, taskData }) {
   const [taskName, setTaskName] = useState('');
   const [taskDescription, setTaskDescription] = useState('');
   const [taskDueDate, setTaskDueDate] = useState('');
   const [taskPriority, setTaskPriority] = useState('low');
 
+  useEffect(() => {
+    if (taskData) {
+        setTaskName(taskData.name);
+        setTaskDescription(taskData.description);
+        setTaskDueDate(taskData.dueDate);
+        setTaskPriority(taskData.priority);
+    }
+  }, [taskData]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    addTask({
-      name: taskName,
-      description: taskDescription,
-      dueDate: taskDueDate,
-      priority: taskPriority,
-      status: 'upcoming',
-    });
+
+    if (taskData) {
+        editTask({
+            ...taskData,
+            name: taskName,
+            description: taskDescription,
+            dueDate: taskDueDate,
+            priority: taskPriority
+        });
+        closeForm();
+    } else {
+        addTask({
+            id: uuidv4(),
+            name: taskName,
+            description: taskDescription,
+            dueDate: taskDueDate,
+            priority: taskPriority,
+            status: 'upcoming',
+        });
+    }
+
     setTaskName('');
     setTaskDescription('');
     setTaskDueDate('');
@@ -23,7 +48,7 @@ function TaskForm({ addTask, closeForm }) {
 
   return (
     <form onSubmit={handleSubmit} className="task-form">
-      <h2>Add New Task</h2>
+      <h2>{taskData === null ? "Add New" : "Edit"} Task</h2>
       <label>
         Task Name:
         <input
@@ -62,8 +87,8 @@ function TaskForm({ addTask, closeForm }) {
           <option value='high'>High</option>
         </select>
       </label>
-      <button type="submit">Add Task</button>
-      <button type="submit" onClick={closeForm}>Exit</button>
+      <button type="submit">{taskData === null ? "Add" : "Done"}</button>
+      <button type="submit" onClick={closeForm}>Close</button>
     </form>
   );
 }

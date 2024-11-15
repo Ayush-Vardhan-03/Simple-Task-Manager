@@ -1,0 +1,41 @@
+.task-form {
+    position: fixed;
+    top: 15%;
+    left: 25%;
+    z-index: 3;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border: 1px solid #ccc;
+    width: 50%;
+}
+
+.task-form h2 {
+    margin-top: 0;
+}
+
+.task-form label {
+    display: block;
+    margin: 10px 0;
+}
+
+.task-form input,
+.task-form textarea,
+.task-form select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+.task-form button {
+    background-color: #28a745;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border: 2px solid white;
+}

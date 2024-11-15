@@ -1,14 +1,46 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import '../css/taskList.css';
 
-function TaskList({ tasks, priorityFilter, activeSection, onComplete, onEdit, onDelete }) {
-  const filteredTasks = tasks.filter(task => {
-    if (task.status === activeSection) {
-      if (priorityFilter === 'all') {
-        return true;
+function TaskList({ tasks, setTasks, searchedTask, priorityFilter, activeSection, setActiveSection, onComplete, onEdit, onDelete }) {
+
+  useEffect(() => {
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
+    let changed = false;
+
+    const updatedTasks = tasks.map(task => {
+      const taskDueDate = new Date(task.dueDate);
+      taskDueDate.setHours(0, 0, 0, 0);
+
+      if (taskDueDate < currentDate && task.status === 'upcoming') {
+        changed = true;
+        return { ...task, status: 'overdue' };
+      }
+      return task;
+    });
+
+    if (changed) { setTasks(updatedTasks); }
+  }, [tasks, setTasks]);
+
+  useEffect(() => {
+    if (searchedTask !== '') {
+      const matchingTasks = tasks.filter(task =>
+        task.name.toLowerCase().includes(searchedTask.toLowerCase())
+      );
+      if (matchingTasks.length > 0) {
+        setActiveSection(matchingTasks[0].status);
       } else {
-        return task.priority === priorityFilter;
+        setActiveSection('none');
       }
     }
+  }, [tasks, searchedTask, setActiveSection]);
+
+  const filteredTasks = tasks.filter(task => {
+    const matchedPriority = priorityFilter === 'all' || task.priority === priorityFilter;
+    const matchedSection = activeSection === task.status;
+    const matchedSearch = searchedTask === '' || task.name.toLowerCase().includes(searchedTask.toLowerCase());
+
+    return matchedPriority && matchedSection && matchedSearch;
   });
 
   return (

@@ -1,0 +1,57 @@
+.navbar {
+    top: 100px;
+    margin-top: 2px;
+    position: fixed;
+    background-color: #34495e;
+    display: flex;
+    justify-content: space-around;
+    width: calc(100% - 120px);
+    left: 120px;
+    z-index: 2;
+}
+
+.sections {
+    display: flex;
+    justify-content: center;
+}
+
+.upcoming,
+.overdue,
+.completed {
+    color: #ecf0f1;
+    padding: 15px;
+    margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+.upcoming {
+    border-left: 2px solid white;
+}
+
+.overdue {
+    border-left: 2px solid white;
+}
+
+.completed {
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+}
+
+.upcoming:hover,
+.overdue:hover,
+.completed:hover {
+    background-color: #1abc9c;
+    color: #34495e;
+    cursor: pointer;
+}
+
+.upcoming.active,
+.overdue.active,
+.completed.active {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    padding: 10px;
+    border: 3px double #1abc9c;
+    cursor: pointer;
+}
